@@ -28,13 +28,12 @@ void main()
 	std::vector<int> vec{ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 };
 
 	/*vec.insert(vec.end(), 134);
-vec.insert(vec.begin(), 134);
-auto temp = vec.begin();
+     vec.insert(vec.begin(), 134);
 int n = 0;
 int c;
 cout << "Введите индекс добавляемого значения:  "; cin >> n;
 cout << "Введите добавляемое значение: "; cin >> c;
-vec.insert(temp + n, c);*/
+vec.insert(vec.begin() + n, c);*/
 
 	for (int i = 0; i < vec.size(); i++)
 	{
