@@ -27,16 +27,8 @@ void main()
 
 #ifdef STL_VECTOR
 	//vector - это контейнер, который хранит данные в виде динамического массива
-	std::vector<int> vec{ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 };
+	std::vector<int> vec={ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89 };
 
-	vec.insert(vec.begin() + 3, { 1024,2048,3072,4096 });
-	/*vec.insert(vec.end(), 134);
-    vec.insert(vec.begin(), 134);
-    int n = 0;
-    int c;
-    cout << "Введите индекс добавляемого значения:  "; cin >> n;
-    cout << "Введите добавляемое значение: "; cin >> c;
-    vec.insert(vec.begin() + n, c);*/
 
 	try
 	{
@@ -52,38 +44,46 @@ void main()
 		std::cerr << endl << e.what() << endl;
 	}
 
-	int m = 0;
-	do
-	{
-		cout << "Введите индекс удаляемого значения:  "; cin >> m;
-	} while (m>=vec.size());
-
-	vec.erase(vec.begin());
-	vec.erase(vec.end()-1);
-	vec.erase(vec.begin() + m);
-
-	for (int i = 0; i < vec.size(); i++)
-	{
-		cout << vec[i] << tab;
-	}
-	cout << endl;
-
 	vector_properties(vec);
 	//vec.push_back(134);
 	//vec.reserve(25);
 	//vec.resize(17);
+
+	vec.insert(vec.begin() + 3, { 1024,2048,3072,4096 });
+	/*vec.insert(vec.end(), 134);
+    vec.insert(vec.begin(), 134);
+    int n = 0;
+    int c;
+    cout << "Введите индекс добавляемого значения:  "; cin >> n;
+    cout << "Введите добавляемое значение: "; cin >> c;
+    vec.insert(vec.begin() + n, c);*/
+
+	/*int m = 0;
+	do
+	{
+		cout << "Введите индекс удаляемого значения:  "; cin >> m;
+	} while (m>=vec.size());
+	vec.erase(vec.begin());
+	vec.erase(vec.end()-1);
+	vec.erase(vec.begin() + m);
+	for (int i = 0; i < vec.size(); i++)
+	{
+		cout << vec[i] << tab;
+	}
+	cout << endl;*/
+
 	for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it)
 	{
 		cout << *it << tab;
 	}
 	cout << endl;
+
 	for (std::vector<int>::reverse_iterator it = vec.rbegin(); it != vec.rend(); ++it)
 	{
 		cout << *it << tab;
-	
 	}
-	cout << endl;;
 	vector_properties(vec);
+	cout << delimiter << endl;
 
 	std::vector<int>vec2(100);
 	vector_properties(vec2);
@@ -92,7 +92,8 @@ void main()
 	vector_properties(vec2);
 #endif // STL_VECTOR
 #ifdef STL_DEQUE
-
+	//deque - это контейнер, который хранит данные в виде набора одномерных динамических массивов
+	//Этот контейнер позволяет добавлять элементы как в начало так и в конец за константное время
 
 #endif // STL_DEQUE
 
