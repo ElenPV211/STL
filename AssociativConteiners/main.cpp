@@ -21,6 +21,8 @@ void main()
 	cout << endl;
 #endif // STL_SET
 #ifdef STL_MAP
+	//map - это контейнер каждый элемент которого хранит пару:ключ - значение
+	//pair <key, value>
 
 	std::map<int, std::string>week =
 	{
@@ -34,13 +36,11 @@ void main()
 	    {0,"Sunday"}
 	};
 	for(std::map<int,std::string>::iterator it = week.begin(); it!=week.end(); ++it)
-
+	{
 		{
 			cout<<it->first<<tab<<it->second<<endl;
 		}
 	cout << endl;
 	}
 #endif // STL_MAP
-
-
 }
