@@ -9,8 +9,8 @@ using std::cin;
 #define delimiter "\n---------------------------\n"
 //#define STL_ARRAY
 //#define STL_VECTOR
-#define STL_DEQUE
-
+//#define STL_DEQUE
+#define STL_LIST
 template<typename T>void vector_properties(const std::vector<T>& vec);
 void main()
 {
@@ -94,10 +94,20 @@ void main()
 #ifdef STL_DEQUE
 	//deque - это контейнер, который хранит данные в виде набора одномерных динамических массивов
 	//Этот контейнер позволяет добавлять элементы как в начало так и в конец за константное время
-
 #endif // STL_DEQUE
 
 }
+
+#ifdef STL_LIST
+std::list<int> list1 = { 0,1,1,2,3,5,8,13,21,34,55,89 };
+list1.insert(5, 6);
+
+std::forward_list<int> list2= { 0,1,1,2,3,5,8,13,21,34,55,89 };
+list2.insert_after(2, { 17,18,5 });
+
+
+#endif // STL_LIST
+
 
 template<typename T>void vector_properties(const std::vector<T>& vec)
 {
