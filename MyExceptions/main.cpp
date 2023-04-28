@@ -22,7 +22,7 @@ void main()
 	}
 	catch (int e)
 	{
-		//catch (ïîéìàòü) - îáðàáîò÷èê èñêëþ÷åíèÿ
+		//catch (поймать) - обработчик исключений
 		//e - Error
 		std::cerr << "Error# " << e << endl;
 	}
@@ -33,7 +33,7 @@ void main()
 	catch (const std::exception& e)
 	{
 		std::cerr << e.what() << endl;
-		//Ìåòîä what() âîçâðàùàåò ñîîáùåíèå îá îøèáêå
+		//метод what() возвращает сообщение об ошибке
 	}
 	catch (...)
 	{
@@ -42,7 +42,7 @@ void main()
 #endif // EXCEPTON_THEORY
 
 	int n;
-	cout << "Ââåäèòå ÷èñëî äëÿ âû÷èñëåíèÿ ôàêòîðèàëà: "; cin >> n;
+	cout << "Введите число для вычисления факториала: "; cin >> n;
 	try
 	{
 		cout << factorial(n) << endl;
