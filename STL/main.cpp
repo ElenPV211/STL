@@ -3,6 +3,8 @@
 #include<array>
 #include<vector>
 #include<deque>
+#include<list>
+#include<forward_list>
 using namespace std;
 using std::cin;
 #define tab "\t"
@@ -100,10 +102,13 @@ void main()
 
 #ifdef STL_LIST
 std::list<int> list1 = { 0,1,1,2,3,5,8,13,21,34,55,89 };
-list1.insert(5, 6);
+
+//list1.insert(5, 6);
 
 std::forward_list<int> list2= { 0,1,1,2,3,5,8,13,21,34,55,89 };
-list2.insert_after(2, { 17,18,5 });
+std::forward_list<int>::iterator it;
+
+//it = list2.insert_after(it, { 17,18,5 });
 
 
 #endif // STL_LIST
