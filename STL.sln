@@ -9,7 +9,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssociativConteiners", "Ass
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyExceptions", "MyExceptions\MyExceptions.vcxproj", "{6D4EBC97-AFDA-4141-B696-9BD59F568B74}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Home Work GAI", "Home Work GAI\Home Work GAI.vcxproj", "{1339BFF6-57AF-40DC-8612-B1E435BA9961}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Police", "Police\Police.vcxproj", "{1339BFF6-57AF-40DC-8612-B1E435BA9961}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
