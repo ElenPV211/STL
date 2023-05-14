@@ -240,7 +240,6 @@ void save(const std::map<std::string, std::list<Crime>>& base, const std::string
 }
 void load(std::map<std::string, std::list<Crime>>& base, const std::string& filename)
 {
-	base.clear();
 	std::ifstream fin(filename);
 	if (fin.is_open())
 	{		//TODO: read file
