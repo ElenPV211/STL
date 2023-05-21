@@ -51,6 +51,7 @@ public:
 		//time_t t_time = mktime(&time);
 		return asctime(&time);
 	}
+	//type name (parameters)
 	time_t get_timestamp()const
 	{
 		struct tm time = this->time;
@@ -108,13 +109,13 @@ public:
 	Crime& operator()(std::string crime)
 	{
 		id = stoi(crime, 0, 10);//преобразуем первое число в строке в число и записываем его в id
-		while (crime.front() == ' ')crime.erase(0, 1);
+		while (crime.front() == ' ')crime.erase(0, 1);//удаляем пробел с начала строки
 		crime.erase(0, crime.find(' '));//удаляем сохранённое число из строки
-		
+
 		set_time(stoi(crime, 0, 10)); //читаем timestamp из строки
 		crime.erase(0, 1);//удаляем пробел с начала строки
 		crime.erase(0, crime.find(' '));//удаляем timestamp из строки
-	
+
 		while (crime.front() == ' ')crime.erase(0, 1);
 		set_place(crime);
 
@@ -128,11 +129,12 @@ int Crime::width = 1;
 std::ostream& operator<<(std::ostream& os, const Crime& obj)
 {
 	/*os << obj.get_id() << " ";
-	os << obj.get_place()<< " ";
-	os << obj.get_time() << " ";*/
+	os << obj.get_place() << " ";
+	os << obj.get_time();
+	return os;*/
 	std::string time = obj.get_time();
 	time[time.size() - 1] = 0;
-	//return os<<time<<": " << crime.at(obj.get_id()) << ", " << obj.get_place();
+	//return os << time << ": " << crime.at(obj.get_id()) << ", " << obj.get_place();
 	os << time << ": ";
 	os.width(obj.get_width());
 	os << std::left;
@@ -140,6 +142,7 @@ std::ostream& operator<<(std::ostream& os, const Crime& obj)
 	os << obj.get_place();
 	return os;
 }
+
 std::ifstream& operator>>(std::ifstream& ifs, Crime& obj)
 {
 	int id;
@@ -150,16 +153,15 @@ std::ifstream& operator>>(std::ifstream& ifs, Crime& obj)
 	obj.set_id(id);
 	obj.set_time(datetime);
 	obj.set_place(place);
-
 	return ifs;
-
 }
+
 void print(const std::map<std::string, std::list<Crime>>& base)
 {
 	for (std::map<std::string, std::list<Crime>>::const_iterator it = base.begin(); it != base.end(); ++it)
 	{
 		cout << it->first << ":\n";
-		for (std::list <Crime>::const_iterator c_it = it->second.begin(); c_it != it->second.end(); ++c_it)
+		for (std::list<Crime>::const_iterator c_it = it->second.begin(); c_it != it->second.end(); ++c_it)
 		{
 			cout << "\t" << *c_it << endl;
 		}
@@ -169,21 +171,20 @@ void print(const std::map<std::string, std::list<Crime>>& base)
 void print_number(const std::map<std::string, std::list<Crime>>& base)
 {
 	std::string licence_plate;
-
 	cout << "Введите номер автомобиля: "; cin >> licence_plate;
 	try
 	{
-		for (std::list <Crime>::const_iterator it = base.at(licence_plate).begin(); it != base.at(licence_plate).end(); ++it)
+		for (std::list<Crime>::const_iterator it = base.at(licence_plate).begin(); it != base.at(licence_plate).end(); ++it)
 		{
 			cout << "\t" << *it << endl;
 		}
 	}
-	catch (const std::exception&)
+	catch (const std::exception& e)
 	{
 		std::cerr << "Номера нет в базе" << endl;
 	}
-
 }
+
 void print_range(const std::map<std::string, std::list<Crime>>& base)
 {
 	std::string start_plate;
@@ -208,13 +209,13 @@ void add_crime(std::map<std::string, std::list<Crime>>& base)
 	std::string place; //место правонарушения
 	int min, hour, day, month, year;//дата и время нарушения
 	cout << "Введите статью: "; cin >> id;
-	SetConsoleCP(1251);
+	//SetConsoleCP(1251);
 	cout << "Введите номер автомобиля: "; cin >> licence_plate; cin.ignore();
-	SetConsoleCP(866);
+	//SetConsoleCP(866);
 	cout << "Введите место нарушения: ";
-	SetConsoleCP(1251);
+	//SetConsoleCP(1251);
 	std::getline(cin, place);
-	SetConsoleCP(866);
+	//SetConsoleCP(866);
 	cout << "Введите дату и время нарушения: "; cin >> year >> month >> day >> hour >> min;
 	base[licence_plate].push_back(Crime(id, place, min, hour, day, month, year));
 }
@@ -227,23 +228,25 @@ void save(const std::map<std::string, std::list<Crime>>& base, const std::string
 		for (std::list<Crime>::const_iterator c_it = it->second.begin(); c_it != it->second.end(); ++c_it)
 		{
 			fout << c_it->get_id() << " " << c_it->get_timestamp() << " ";
-			//fout.seekp(-3,ios::cur);
+			//fout.seekp(-2, ios::cur);
 			fout << " " << c_it->get_place() << ", ";
 		}
 		fout.seekp(-2, std::ios::cur);
-		fout << endl;
-		fout.close();
-		std::string command = "notepad ";
-		command += filename;
-		system(command.c_str());
+		fout << ";\n";
 	}
+	fout.close();
+	std::string command = "notepad ";
+	command += filename;
+	system(command.c_str());
 }
-void load(std::map<std::string, std::list<Crime>>& base, const std::string& filename)
+
+void load(std::map <std::string, std::list<Crime>>& base, const std::string& filename)
 {
 	base.clear();
 	std::ifstream fin(filename);
 	if (fin.is_open())
-	{		//TODO: read file
+	{
+		//TODO: read file
 		std::string licence_plate;
 		const int SIZE = 1024;
 		char all_crimes[SIZE] = {};
@@ -252,15 +255,15 @@ void load(std::map<std::string, std::list<Crime>>& base, const std::string& file
 		{
 			std::getline(fin, licence_plate, ':');
 			if (licence_plate.empty())continue;
-			/*	while (crime.get_place().back() != ';')
-				{
-					fin >> crime;
-				}*/
+			/*while (crime.get_place().back() != ';')
+			{
+				fin >> crime;
+			}*/
 			fin.getline(all_crimes, SIZE, ';');
 			for (char* pch = strtok(all_crimes, ",;"); pch; pch = strtok(NULL, ",;"))
 			{
 				crime(pch);
-			    base[licence_plate].push_back(crime);
+				base[licence_plate].push_back(crime);
 			}
 		}
 		fin.ignore();
@@ -291,7 +294,7 @@ void main()
 
 #endif // TIME_CHECK
 
-	std::map<std::string, std::list<Crime>> base /*=
+	std::map<std::string, std::list<Crime>> base/* =
 	{
 		{
 			"m777aa",
@@ -331,7 +334,7 @@ void main()
 		system("CLS");
 		switch (key)
 		{
-		case 1: print(base);break;
+		case 1: print(base); break;
 		case 2: save(base, "base.txt"); break;
 		case 3: load(base, "base.txt"); break;
 		case 4: add_crime(base); break;
